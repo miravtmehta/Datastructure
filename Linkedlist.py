@@ -91,3 +91,6 @@ if __name__ == '__main__':
     print(my_list.get_data_of_index(2))
     my_list.reverse()
     my_list.display()
+
+
+# Ref : https://www.youtube.com/watch?v=XDO6I8jxHtA
