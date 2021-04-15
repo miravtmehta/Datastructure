@@ -62,16 +62,13 @@ class LinkedList(object):
 
     def reverse(self):
         previous = None
-        cur_node = self.head
-        following = cur_node.next
-
-        while cur_node:
-            cur_node.next = previous
-            previous = cur_node
-            cur_node = following
-            if following:
-                following = following.next
-            self.head = previous
+        current = self.head
+        while current is not None:
+            temp = current
+            current = current.next
+            temp.next = previous
+            previous = temp
+        self.head = previous
 
     def headexist(self):
         return 0 if not self.head else 1
@@ -88,7 +85,6 @@ if __name__ == '__main__':
     my_list.append(65)
     my_list.append(75)
     my_list.display()
-    print(my_list.get_data_of_index(2))
     my_list.reverse()
     my_list.display()
 
