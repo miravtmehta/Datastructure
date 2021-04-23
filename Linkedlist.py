@@ -77,16 +77,41 @@ class LinkedList(object):
         self.head = None
         return True
 
+    def alternate(self):
+        elements = ''
+        curr_node = self.head
+        while curr_node:
+            elements += str(curr_node.data) + '-->'
+            if curr_node.next:
+                curr_node = curr_node.next.next
+            else:
+                curr_node = None
+        print(elements)
+
+    def odd_even(self):
+        odd = self.head
+        even = self.head.next
+        evenhead = even
+
+        while even and even.next:
+            odd.next = even.next
+            odd = odd.next
+            even.next = odd.next
+            even = even.next
+
+        odd.next = evenhead
+
 
 if __name__ == '__main__':
     my_list = LinkedList()
-    my_list.append(45)
-    my_list.append(55)
-    my_list.append(65)
-    my_list.append(75)
+    my_list.append(1)
+    my_list.append(2)
+    my_list.append(3)
+    my_list.append(4)
+    my_list.append(5)
+    my_list.append(6)
     my_list.display()
-    my_list.reverse()
+    my_list.odd_even()
     my_list.display()
-
 
 # Ref : https://www.youtube.com/watch?v=XDO6I8jxHtA
