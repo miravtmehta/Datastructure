@@ -101,17 +101,48 @@ class LinkedList(object):
 
         odd.next = evenhead
 
+    def rotate(self, k=2):
+        leng = self.total_length()
+        k = k % leng
+        last_element = self.head
+        while last_element.next:
+            last_element = last_element.next
+        last_element.next = self.head
+
+        for _ in range(leng - k - 1):
+            self.head = self.head.next
+
+        ans = self.head.next
+        self.head.next = None
+
+        print(ans.data)
+
+
+def mergesorted(l1, l2):
+    if not l1 or not l2:
+        return l1 or l2
+    if l1.data < l2.data:
+        l1.next = mergesorted(l1.next, l2)
+        return l1
+    else:
+        l2.next = mergesorted(l2.next, l1)
+        return l2
+
 
 if __name__ == '__main__':
     my_list = LinkedList()
+    second = LinkedList()
     my_list.append(1)
     my_list.append(2)
     my_list.append(3)
     my_list.append(4)
     my_list.append(5)
-    my_list.append(6)
-    my_list.display()
-    my_list.odd_even()
+    second.append(1)
+    second.append(2)
+    second.append(3)
+    second.append(4)
+    second.append(5)
+    my_list.head = mergesorted(my_list.head, second.head)
     my_list.display()
 
 # Ref : https://www.youtube.com/watch?v=XDO6I8jxHtA
